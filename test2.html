@@ -1,0 +1,50 @@
+<?php 
+require_once 'model/DB.php';
+require_once 'index.php';
+$orderConn = new DB();
+$ch = curl_init('https://online.moysklad.ru/api/remap/1.2/entity/counterparty');
+curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+curl_setopt($ch, CURLOPT_USERPWD, "admin@vergazka:39c8f67393ee");
+curl_setopt($ch, CURLOPT_RETURNTRANSFER ,true);
+$result = curl_exec($ch);
+$raw = json_decode($result,true);
+curl_close($ch);
+?>
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>
+            <form action="model/testAction.php" method="POST">
+                <input type='text' name='name' placeholder='Название продукта'>
+                <input type='text' name='calories' placeholder='Калорийность'>
+                
+                <select name="counterparty">
+                    <?php for($i=0; $i<=count($raw); $i++): ?>
+                    <option value="ИП Поточкин"><?php debug($raw['rows'][$i]['name']) ?></option>
+                    <?php endfor; ?>
+                </select>
+                
+                <button type='submit'>Добавить в базу</button>
+            </form>
+        </div>
+        <div>
+            <p><?php $result = $orderConn->query('Select * FROM products'); ?></p>
+        </div>
+        
+        <table>
+            <caption>Таблица калорийности</caption>
+            <?php for($i = 0; $i<count($result); $i++): ?>
+            <tr>
+                <td><?php echo $result[$i]['name']; ?></td>
+                <td><?php echo $result[$i]['calories']; ?></td>
+            </tr>
+            <?php endfor; ?>
+        </table>
+    </body>
+</html>

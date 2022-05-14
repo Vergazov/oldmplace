@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>
+            <form method="POST" action="model/formAction.php">
+                <select name="counterparty">
+                    <option value="ИП Поточкин">ИП Поточкин</option>
+                    <option value="ООО Ромашка">ООО Ромашка</option>
+                </select>
+                <select name="condition_1">
+                    <option value="И ">И</option>
+                    <option value="ИЛИ">ИЛИ</option>
+                    <option value="И НЕ">И НЕ</option>
+                </select>
+                <select name="project">
+                    <option value="Ленина">Ленина</option>
+                    <option value="Дьяконова">Дьяконова</option>
+                </select>
+                <select name="condition_2">
+                    <option value="И СОДЕРЖИТ">И СОДЕРЖИТ</option>
+                    <option value="И НЕ СОДЕРЖИТ">И НЕ СОДЕРЖИТ</option>
+                </select>
+                
+                <input type="text" name="comment" placeholder="Комментарий">
+                
+                <select name="condition_3">
+                    <option value="И СОДЕРЖИТ">И СОДЕРЖИТ</option>
+                    <option value="И НЕ СОДЕРЖИТ">И НЕ СОДЕРЖИТ</option>
+                </select>
+                
+                <input type="text" name="purpose_of_payment" placeholder="Назначение платежа">
+                
+                <select name="item_of_expenditure">
+                    <option value="Аренда">Аренда</option>
+                    <option value="Зарплата">Зарплата</option>
+                </select>
+                
+                <button type="submit">Отправить</button>
+                
+            </form>
+        </div>
+    </body>
+</html>
